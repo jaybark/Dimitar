@@ -5,7 +5,7 @@ map = L.map('map', {
 	zoom : 13
 });
 
-var mpn = new L.TileLayer("http://{s}.tiles.mapbox.com/v3/diroru.QypeAntiquesTest/{z}/{x}/{y}.png");
+var mpn = new L.TileLayer("http://maps-fhp.de:8888/v2/DRR_QypeAntiques/{z}/{x}/{y}.png");
 
 mpn.addTo(map);
 
@@ -68,6 +68,7 @@ var markerList = [{
 }
 ];
 
+/*
 var customIcon = new L.Icon( {
 	iconUrl: 'images/thonet_marker_002.svg',
 	iconSize: [60, 58],
@@ -85,3 +86,4 @@ for(i=0;i<markerList.length;i++){
 
 
 L.marker([52.52, 13.4], {icon: customIcon }).addTo(map);
+*/
