@@ -1,35 +1,24 @@
-var stw = new L.StamenTileLayer("watercolor");
-
-
-
 var map;
 
-//wax.tilejson('http://api.tiles.mapbox.com/v2/mapbox.geography-class.jsonp',
-	//'http://a.tiles.mapbox.com/v3/diroru.QypeAntiquesTest.jsonp'
-wax.tilejson('http://api.tiles.mapbox.com/v2/diroru.QypeAntiquesTest.jsonp',
-//wax.tilejson('http://api.tiles.mapbox.com/v2/mapbox.geography-class.jsonp',
-  function(tilejson) {
-    map = new L.Map('map')
-      .addLayer(new wax.leaf.connector(tilejson))
-      .setView(new L.LatLng(52.52, 13.4), 1);
-
+map = L.map('map', {
+	center : [52.52, 13.4],
+	zoom : 13
 });
 
+var mpn = new L.TileLayer("http://{s}.tiles.mapbox.com/v3/diroru.QypeAntiquesTest/{z}/{x}/{y}.png");
 
+mpn.addTo(map);
 
-var markerList = jQuery.parseJSON({
+var markerList = [{
 "name":"Kunst & Antikmarkt am Kupergraben",
 "lon":"52.5215",
 "lat":"13.3939",
 "details":"3"
-}
-,	{
-"name":"Alte Schilder, Dosen, Flaschen",
+},{"name":"Alte Schilder, Dosen, Flaschen",
 "lon":"52.5202",
 "lat":"13.3906",
 "details":"5"
-}
-,	{
+},{
 "name":"L. Waroschitz",
 "lon":"52.5201",
 "lat":"13.392",
@@ -77,20 +66,22 @@ var markerList = jQuery.parseJSON({
 "lat":"13.3992",
 "details":"4"
 }
-);
-
-for(i=0;i<markerList.length;i++){
-	L.marker([markerList[i].lon,markerList[i].lat]).addTo(map);
-}
+];
 
 var customIcon = new L.Icon( {
-	iconUrl: 'images/thonet_marker_002.png',
-	iconSize: [53, 51],
+	iconUrl: 'images/thonet_marker_002.svg',
+	iconSize: [60, 58],
 	iconAnchor: [27, 51],
 	popupAnchor: [0, 0],
-	shadowUrl: 'images/thonet_marker_002_shadow.png',
-	shadowSize: [83, 51],
+	shadowUrl: 'images/thonet_marker_002_shadow.svg',
+	shadowSize: [60, 58],
 	shadowAnchor: [27, 51]
 });
+
+for(i=0;i<markerList.length;i++){
+	L.marker([markerList[i].lon,markerList[i].lat], {icon: customIcon }).addTo(map);
+}
+
+
 
 L.marker([52.52, 13.4], {icon: customIcon }).addTo(map);
